@@ -10,22 +10,25 @@ from .forms import PlantsRegistration
 
 # Create your views here.
 def add_show(request):
-    if request.method == "POST":
-        fm = PlantsRegistration(request.POST)
-        if fm.is_valid():
-            batch = fm.cleaned_data['batch']
-            name = fm.cleaned_data['name']
-            type = fm.cleaned_data['type']
-            details = fm.cleaned_data['details']
-            Seeds = fm.cleaned_data['Seeds']
-            quantity = fm.cleaned_data['quantity']
-            reg = MUser(batch=batch, name=name, type=type, details=details, Seeds=Seeds, quantity=quantity)
-            reg.save()
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            fm = PlantsRegistration(request.POST)
+            if fm.is_valid():
+                batch = fm.cleaned_data['batch']
+                name = fm.cleaned_data['name']
+                type = fm.cleaned_data['type']
+                details = fm.cleaned_data['details']
+                Seeds = fm.cleaned_data['Seeds']
+                quantity = fm.cleaned_data['quantity']
+                reg = MUser(batch=batch, name=name, type=type, details=details, Seeds=Seeds, quantity=quantity)
+                reg.save()
+                fm = PlantsRegistration()
+        else:
             fm = PlantsRegistration()
-    else:
-        fm = PlantsRegistration()
 
-    return render(request, 'addandshow.html', {'form': fm, 'data': MUser.objects.all()})
+        return render(request, 'addandshow.html', {'form': fm, 'data': MUser.objects.all()})
+    else:
+        return HttpResponseRedirect('/login')
 
 
 def update_data(request, id):
@@ -94,6 +97,7 @@ class PasswordChangedForm:
 
 
 def user_chanage_password(request):
+
     if request.method == 'POST':
         fm = PasswordChangeForm(user=request.user,data=request.POST)
         if fm.is_valid():
