@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4 style="color:white">Update Plants Details</h4>
+<div class="col" style="color:white;">
+          <form action = "" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" class="btn btn-success" value="Update">
+              <a href="/addandshow" class="btn btn-success">Back</a>
+          </form>
+    </div>
+{% endblock %}
