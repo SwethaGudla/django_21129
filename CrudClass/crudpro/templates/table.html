@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+</head>
+<body style="background-color: rgb(154, 139, 184)">
+    <center style="font-family: cursive;"><h2>Student Details</h2></center>
+<center><table style="border: 2px solid black">
+<tr>
+    <th>name</th>
+    <th>age</th>
+    <th>phone</th>
+    <th>email</th>
+    <th>branch</th>
+    <th>address</th>
+
+  </tr>
+{% for i in details %}
+
+    <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.age}}</td>
+        <td>{{i.phone}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.branch}}</td>
+        <td>{{i.address}}</td>
+        <td><a href="{% url 'update' i.id %}">Edit</a></td>
+        <td><a href="{% url 'delete' i.id %}">Delete</a></td>
+    </tr>
+
+{% endfor %}
+</table></center>
+    <center><button onclick="document.location.href='/logout';" style="color: rgb(65, 209, 235); margin-top: 5px;" class="close">Sign Out</button></center>
+
+</body>
+</html>

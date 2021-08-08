@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body style="background-color: rgb(154, 139, 184)">
+    <center style="font-family: cursive;">
+        <h2><b>Student Registration Form</b></h2>
+    </center>
+    <center><form action="" method="POST">
+        {% csrf_token %}
+            <table>
+                {% for i in form %}
+                <tr>
+                    <td>{{i.label_tag}}</td>
+                    <td>{{i}}</td>
+
+                </tr>
+                {% endfor %}
+                <!-- {{form.as_p}} -->
+            </table>
+            <input type="submit" value="SUBMIT">
+    </form></center>
+    
+</body>
+
+</html>
