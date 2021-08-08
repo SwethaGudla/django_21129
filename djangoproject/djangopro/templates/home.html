@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h3>welcome to django</h3><br>
+{{date}}<br><br>
+<img src="{% static 'images/pic.jfif' %}"><br>
+<label>name</label>
+<input type="text" id="name" placeholder="Enter name">
+<button type="button" onclick="code()">Click Me!</button>
+<h3 id="demo"></h3>
+<h1>test</h1>
+{% endblock content %}
